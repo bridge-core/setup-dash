@@ -1,0 +1,13 @@
+name: 'setup-dash'
+description: 'Sets up dash within the current action runtime'
+inputs:
+    dash-version:
+        description: The Dash version to install
+runs:
+    using: 'composite'
+    steps:
+        - uses: denoland/setup-deno@v1
+          with:
+              deno-version: v1.x
+        - run: deno install -A -n dash_compiler https://deno.land/x/dash_compiler@v${{ inputs.dash-version }}/mod.ts
+          shell: bash
